@@ -1,0 +1,10 @@
+SELECT E.country,
+COUNT (DISTINCT A.customer_id) AS Total_customer,
+SUM(A.amount) AS total_amount
+FROM Payment A 
+INNER JOIN customer B ON A.customer_id = B.customer_id
+INNER JOIN address C ON B.address_id = C.address_id 
+INNER JOIN city D ON C.city_id = D.city_id 
+INNER JOIN country E ON D.country_id = E.country_id 
+GROUP BY E.country
+ORDER BY Total_customer DESC;
